@@ -1,0 +1,4 @@
+Bio::SubseqIterator
+===================
+
+A simple module to perform arbitrary calculations on a sequence sliding window.
