@@ -1,4 +1,4 @@
-package Bio::SubseqIterator;
+package Bio::SlidingScore;
 
 # ABSTRACT: Apply a function to a sequence sliding window
 
@@ -42,7 +42,7 @@ sub score_iterator {
         $result{score} = $score;
 
         # Save the initial and final positions of the peptide
-        $result{position} = [ $pos, $pos + $w - 1];
+        $result{position} = [ $pos, $pos + $w - 1 ];
         $pos += $s;
 
         return \%result;

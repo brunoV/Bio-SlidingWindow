@@ -1,6 +1,6 @@
 use Test::More;
 use Test::Exception;
-use Bio::SubseqIterator qw(score_iterator);
+use Bio::SlidingScore qw(score_iterator);
 
 my @sequences = qw(VIKPAPKLK ALEPADD);
 
