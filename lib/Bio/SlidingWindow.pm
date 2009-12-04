@@ -1,4 +1,4 @@
-package Bio::SlidingScore;
+package Bio::SlidingWindow;
 
 # ABSTRACT: Apply a function to a sequence sliding window
 
