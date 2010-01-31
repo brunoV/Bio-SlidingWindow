@@ -6,6 +6,28 @@ use Modern::Perl;
 use Try::Tiny;
 use Sub::Exporter -setup => { exports => [qw(subsequence_iterator score_iterator)] };
 
+=method score_iterator
+
+Take a function that gives a score to a peptide, a polypeptide sequence,
+a window size and a step and returns an iterator that will give the
+score for each sequence substring.
+
+    my $sliding_score = score_iterator(
+        function => $function,
+        sequence => \$seq,
+        window_size => 2,
+        step        => 1,
+    );
+
+    while ( my $result = $sliding_score->() ) {
+
+        say $result->{position}; # [ $start, $end ]
+        say $result->{sequence}; # $sequence
+        say $result->{score};    # $score
+    }
+
+=cut
+
 sub score_iterator {
     my %args = @_;
 
@@ -49,6 +71,24 @@ sub score_iterator {
     }
 
 }
+
+=method subsequence_iterator
+
+Takes a reference to a sequence, a window size and a sliding step as
+arguments. Returns an iterator that will return the correct subsequence
+when kicked, and undef when exhausted.
+
+    my $sequence = 'AAAAAAGGGGGG';
+
+    my $it = subsequence_iterator(\$sequence, 6, 6);
+
+    while (my $subseq = $it->()) {
+        print $subseq, " ";
+    }
+
+    # OUTPUT: "AAAAAA GGGGGG "
+
+=cut
 
 sub subsequence_iterator {
     my ( $seq_ref, $window_size, $step ) = @_;
