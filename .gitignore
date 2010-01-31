@@ -8,4 +8,5 @@ Makefile
 pm_to_blib
 cover_db/
 .prove/
+.prove
 .build/
